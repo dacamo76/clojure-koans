@@ -16,10 +16,12 @@
     (cons (last coll) (recursive-reverse (butlast coll)))))
 
 (defn factorial [n]
-  (case n
-    0 1
-    (* n (factorial (- n 1)))))
-
+  (loop [n n
+         acc 1]
+    (if (= n 0)
+      acc
+    (recur (- n 1) (* acc n)))))
+ 
 (meditations
   "Recursion ends with a base case"
   (= true (is-even? 0))
